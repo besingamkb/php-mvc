@@ -19,6 +19,7 @@
         "php": "^8.2",
         "ext-pdo": "*",
         "fakerphp/faker": "^1.24",
-        "ext-simplexml": "*"
+        "ext-simplexml": "*",
+        "ext-mbstring": "*"
     }
 }

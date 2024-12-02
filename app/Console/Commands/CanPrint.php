@@ -17,6 +17,6 @@ trait CanPrint
     public function dump(string | object | array $data): void
     {
         echo "dump: \n";
-        var_dump($data);
+        print_r($data);
     }
 }

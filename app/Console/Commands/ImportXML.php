@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Models\Author;
+use App\Models\Book;
 
 class ImportXML implements Command
 {
@@ -16,17 +17,18 @@ class ImportXML implements Command
             $xml = simplexml_load_file($path);
             $json = json_encode($xml);
             $array = json_decode($json, true);
-//            $this->dump($array);
 
-            $authorModel = new Author();
-            foreach ($array as $items) {
-                foreach ($items as $book) {
-                    $this->info("Book: " . $book['name'] . " Author: " . $book['author']);
-                    $authorModel->insert([
-                        'name' => $book['author']
-                    ]);
-                }
+            $book = [];
+            foreach ($array['book'] as $item) {
+                $book[] = [
+                    'title' => mb_convert_encoding($item['name'], 'UTF-8', 'auto'),
+                    'author' => mb_convert_encoding($item['author'], 'UTF-8', 'auto')
+                ];
             }
+
+            $bookModel = new Book();
+            $a = $bookModel->insertBooksWithAuthors($book);
+            $this->dump($a);
         } else {
             $this->error("File not found");
         }

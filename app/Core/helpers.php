@@ -1,13 +1,26 @@
 <?php
 
-/**
- * Retrieves an environment variable or returns a default value.
- *
- * @param string $key The environment variable key to retrieve.
- * @param mixed $default The default value to return if the variable is not found.
- * @return mixed The value of the environment variable or the default value.
- */
 function env(string $key, mixed $default = null): mixed
 {
     return getenv($key) !== false ? getenv($key) : $default;
+}
+
+function redirect($url, $status = 302)
+{
+    if (!headers_sent()) {
+        header("Location: $url", true, $status);
+        exit();
+    } else {
+        // fallback
+        echo "<script>window.location.href='$url';</script>";
+        exit();
+    }
+}
+
+function responseJson($data, $status = 200)
+{
+    header('Content-Type: application/json');
+    http_response_code($status);
+    echo json_encode($data);
+    exit();
 }

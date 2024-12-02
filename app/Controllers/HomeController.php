@@ -12,10 +12,6 @@ class HomeController extends Controller
      */
     public function index(): void
     {
-        $authorsModel = new Author();
-
-        $this->render('home', [
-            'users' => $authorsModel->getAll(),
-        ]);
+        echo "go to /authors";
     }
 }

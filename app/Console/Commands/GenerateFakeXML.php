@@ -19,11 +19,11 @@ class GenerateFakeXML implements Command
 
         $books = [];
 
-        for ($i = 0; $i <100; $i++) {
+        for ($i = 0; $i < 3000; $i++) {
             $faker = $this->getRandomFaker($fakers);
 
             $book = [
-                'name' => $faker->name,
+                'name' => $i % 3 == 0 ? $faker->name : $faker->words(rand(2, 6), true),
                 'author' => $faker->name,
             ];
 
@@ -33,6 +33,8 @@ class GenerateFakeXML implements Command
         $xml = new SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><books/>');
         $this->arrayToXmlFormat($books, $xml);
         $xml->asXML('books.xml');
+        $this->info("waiting for 30 seconds to make sure that files done generating books");
+        sleep(30);
         $this->info("done...");
     }
 
