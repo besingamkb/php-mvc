@@ -1,3 +1,13 @@
+create DATABASE testdb;
+
+CREATE USER testuser WITH PASSWORD 'password';
+
+GRANT USAGE ON SCHEMA public TO testuser;
+
+ALTER DEFAULT PRIVILEGES  IN SCHEMA public GRANT ALL PRIVILEGES ON TABLES TO testuser;
+
+
+
 -- Connect to the database: testdb
 
 CREATE TABLE authors (
