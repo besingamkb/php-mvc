@@ -19,7 +19,7 @@ this is heavelly inspired by the Laravel framework.
 - run `composer install` to install the dependencies inside your project directory
 - create a database in your posgresql server
 - execute `tables.sql` to create the tables, create/assign users, stored procedures and permissions
-- for the database credentials, you can set ENV variables in your system or changer default value inside the App\Models\Model.php file
+- for the database credentials, you can set ENV variables in your system or changer default value inside the `App\Models\Model.php` file
 
 
 ## After install
@@ -37,7 +37,7 @@ this will generate fake books and authors using PHP Faker
 // note: the file will be generated in the root directory of the project
 // note: I use PHP Faker package from composer to make my life easier creating fake books and authors
 
-you can modify App\Commands\GenerateFakeXmlCommand.php to change the number of books and authors generated
+you can modify `App\Commands\GenerateFakeXmlCommand.php` to change the number of books and authors generated
 
 ### importing books from `books.xml` file
 
